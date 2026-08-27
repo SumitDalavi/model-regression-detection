@@ -1,4 +1,4 @@
-import { detectRegression } from '../src/alerts/detector';
+import { detectRegression, sendAlert } from '../src/alerts/detector';
 import { getDb } from '../src/db/schema';
 import { EvalRun } from '../src/types';
 
@@ -40,7 +40,6 @@ describe('Regression Detector', () => {
       }])
     });
 
-    // Score dropped slightly, but less than 0.05 threshold
     const run = createRun('run-2', { factual_consistency: 0.92, semantic_similarity: 0.88, tone_formatting: 0.82 });
     const result = await detectRegression(run, 0.05);
     
@@ -55,7 +54,6 @@ describe('Regression Detector', () => {
       }])
     });
 
-    // factual_consistency dropped by 0.10 (which is >= 0.05)
     const run = createRun('run-3', { factual_consistency: 0.85, semantic_similarity: 0.88, tone_formatting: 0.82 });
     const result = await detectRegression(run, 0.05);
     
@@ -63,5 +61,22 @@ describe('Regression Detector', () => {
     expect(result.degradedMetrics.length).toBe(1);
     expect(result.degradedMetrics[0].metric).toBe('factual_consistency');
     expect(result.degradedMetrics[0].drop).toBeCloseTo(0.10);
+  });
+
+  test('Should skip alert if no regression', async () => {
+    const logSpy = jest.spyOn(console, 'log').mockImplementation();
+    await sendAlert({ isRegression: false, degradedMetrics: [] }, createRun('run-1', {}));
+    expect(logSpy).not.toHaveBeenCalled();
+    logSpy.mockRestore();
+  });
+
+  test('Should send alert if regression', async () => {
+    const logSpy = jest.spyOn(console, 'log').mockImplementation();
+    await sendAlert({ 
+      isRegression: true, 
+      degradedMetrics: [{ metric: 'factual_consistency', previous: 0.95, current: 0.85, drop: 0.10 }] 
+    }, createRun('run-1', {}));
+    expect(logSpy).toHaveBeenCalled();
+    logSpy.mockRestore();
   });
 });
