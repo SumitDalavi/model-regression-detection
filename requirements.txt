@@ -1,1 +1,3 @@
 # model-regression-detection dependencies
+
+pytest
