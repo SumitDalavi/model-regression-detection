@@ -1,4 +1,5 @@
 # Architecture: Model Regression Detection System
+> Maturity: Full Prototype
 
 ## System Diagram
 The following Mermaid.js sequence diagram maps the core workflow and interactions:
