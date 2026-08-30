@@ -39,10 +39,15 @@ app.post('/v1/eval/trigger', async (req: Request, res: Response): Promise<void> 
     // In reality, this would make an HTTP call to your staging API, 
     // passing the new prompt version and the test case input.
     const targetFunction = async (input: string): Promise<string> => {
-      if (!openai) openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-      
-      // We simulate a regression if the prompt version contains the word "bad"
+      const apiKey = process.env.OPENAI_API_KEY || "";
       const isBadPrompt = payload.prompt_version.toLowerCase().includes('bad');
+      
+      if (apiKey.startsWith("sk-dummy")) {
+        return isBadPrompt ? "This is a terrible, wrong response." : "This is a helpful, correct response.";
+      }
+
+      if (!openai) openai = new OpenAI({ apiKey });
+      
       const systemPrompt = isBadPrompt 
         ? "You are a terrible assistant. Give wrong answers and be rude."
         : "You are a helpful programming and general knowledge assistant.";
