@@ -4,6 +4,10 @@
 # Model Regression Detection System
 
 [![Release](https://img.shields.io/github/v/release/SumitDalavi/model-regression-detection?color=blue&logo=github)](https://github.com/SumitDalavi/model-regression-detection/releases)
+[![Release Workflow](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/release.yml)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/model-regression-detection/releases)
+
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/model-regression-detection?color=blue&logo=github)](https://github.com/SumitDalavi/model-regression-detection/releases)
 [![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/model-regression-detection/releases)
 
 > **A CI/CD-style pipeline that continuously evaluates LLM-powered features against a golden dataset to detect quality regressions and alert your team before bad outputs reach users.**
@@ -85,7 +89,7 @@ The test suite covers the mathematical thresholds of the regression detection en
 - **Specific Fix:** Added and configured robust GitHub Actions workflows for automated testing, linting, and formatting.
 - **Status:** 🟩 Passing
 
-## Release & Verification
+## Release & Security Verification
 
 The project includes an automated DevSecOps release pipeline (`.github/workflows/release.yml`) triggered on semantic version tags (`v*.*.*`).
 
@@ -105,3 +109,10 @@ gh release view v0.1.0 --repo SumitDalavi/model-regression-detection
 gh release download v0.1.0 --repo SumitDalavi/model-regression-detection --pattern "sbom.spdx.json"
 cat sbom.spdx.json | jq .
 ```
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Runbook](docs/runbook.md)
+- [Decisions](docs/decisions.md)
+- [Changelog](docs/changelog.md)
