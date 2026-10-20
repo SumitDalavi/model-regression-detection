@@ -15,10 +15,16 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+import { isLiveOpenAIKey, detectMode } from './credential-mode';
+
 let openai: OpenAI | null = null;
 
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+  res.json({
+    status: 'ok',
+    service: 'model-regression-detection',
+    mode: detectMode(),
+  });
 });
 
 /**
@@ -42,7 +48,7 @@ app.post('/v1/eval/trigger', async (req: Request, res: Response): Promise<void> 
       const apiKey = process.env.OPENAI_API_KEY || "";
       const isBadPrompt = payload.prompt_version.toLowerCase().includes('bad');
       
-      if (apiKey.startsWith("sk-dummy")) {
+      if (!isLiveOpenAIKey(apiKey)) {
         return isBadPrompt ? "This is a terrible, wrong response." : "This is a helpful, correct response.";
       }
 

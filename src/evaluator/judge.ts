@@ -29,6 +29,8 @@ Provide a brief reasoning, and then return the scores in strict JSON format.
 }
 `;
 
+import { isLiveOpenAIKey } from '../credential-mode';
+
 export async function evaluateOutput(
   testCase: TestCase, 
   generatedOutput: string
@@ -38,12 +40,12 @@ export async function evaluateOutput(
 
   try {
     const apiKey = process.env.OPENAI_API_KEY || "";
-    if (apiKey.startsWith("sk-dummy")) {
+    if (!isLiveOpenAIKey(apiKey)) {
       const isBad = generatedOutput.includes("terrible, wrong");
       const score = isBad ? 0.1 : 0.9;
       return {
         scores: { factual_consistency: score, semantic_similarity: score, tone_formatting: score },
-        reasoning: isBad ? "Response is completely wrong and bad" : "Response is good and matches golden"
+        reasoning: isBad ? "[MOCK] Response is completely wrong and bad" : "[MOCK] Response is good and matches golden"
       };
     }
 
