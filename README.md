@@ -1,20 +1,17 @@
 > **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
 
-
 # Model Regression Detection System
 
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/model-regression-detection?color=blue&logo=github)](https://github.com/SumitDalavi/model-regression-detection/releases)
+[![CI Pipeline](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/model-regression-detection?color=0969da&label=release&logo=github)](https://github.com/SumitDalavi/model-regression-detection/releases)
 [![Release Workflow](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/model-regression-detection/actions/workflows/release.yml)
-[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/model-regression-detection/releases)
-
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/model-regression-detection?color=blue&logo=github)](https://github.com/SumitDalavi/model-regression-detection/releases)
-[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/model-regression-detection/releases)
+[![GHCR Container](https://img.shields.io/badge/ghcr.io-v0.2.0-blue?logo=docker&logoColor=white)](https://github.com/SumitDalavi/model-regression-detection/pkgs/container/model-regression-detection)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/model-regression-detection/releases/tag/v0.2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **A CI/CD-style pipeline that continuously evaluates LLM-powered features against a golden dataset to detect quality regressions and alert your team before bad outputs reach users.**
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20-green?logo=nodedotjs)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ---
 
@@ -81,7 +78,6 @@ The test suite covers the mathematical thresholds of the regression detection en
 
 **Sumit Dalavi** — Senior DevSecOps / Platform Engineer  
 [GitHub](https://github.com/SumitDalavi) · [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
-
 
 ## CI & Reliability Updates (August 2026)
 
